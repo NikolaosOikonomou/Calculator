@@ -8,8 +8,8 @@ function getUserNumberInput() {
 }
 
 //Generates and writes calculation log
-function createAndWriteOutput(operator, resultBefore, clacNumber) {
-  const calcDescription = `${resultBefore} ${operator} ${clacNumber}`;
+function createAndWriteOutput(operator, resultBefore, calcNumber) {
+  const calcDescription = `${resultBefore} ${operator} ${calcNumber}`;
   outputResult(currentResult, calcDescription); //from vendor file
 }
 
@@ -31,6 +31,16 @@ function writeToLog(
 
 function calculateResult(calculationType) {
   const enteredNumber = getUserNumberInput();
+  if (
+    calculationType !== 'ADD' &&
+    calculationType !== 'SUBSTRACT' &&
+    calculationType !== 'MULTIPLY' &&
+    calculationType !== 'DEVIDE' ||
+    !enteredNumber // catching if user input is zero
+  ) {
+    return;
+  }
+
   const initialResult = currentResult;
   let mathOperator;
   if (calculationType === 'ADD') {
